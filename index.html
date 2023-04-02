@@ -26,6 +26,17 @@
                 });
                 });
             }, []);
+            useEffect(() => {
+                const drumpad = document.querySelectorAll('.drum-pad')
+                drumpad.forEach(item => {
+                    item.addEventListener('keydown', e => {
+                        const audio = item.querySelector('audio');
+                        if (e.keyCode === 81 || e.keyCode === 87 || e.keyCode === 69 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 68 || e.keyCode === 90 || e.keyCode === 88 || e.keyCode === 67) {
+                            audio.play();
+                        }
+                    })
+                })
+            }, [])
             return (
                 <main id="drum-machine">
                     <div id="display">
