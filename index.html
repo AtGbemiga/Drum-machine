@@ -6,10 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Drum machine</title>
+    <style>
+        button{
+            padding: 3rem;
+            margin: .5rem;
+            box-sizing: border-box;
+        }
+        main{
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(249,255,0,1) 35%, rgba(0,212,255,1) 100%);
+        }
+        h3{
+                margin-left: 3rem;
+        }
+        @media (max-width: 576px) {
+            #display{
+                width: "95vw";
+            }
+            h3{
+                color: rgb(250, 249, 248);
+                margin-left: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <div id="root"></div>
@@ -29,12 +52,14 @@
                 });
                 });
             }, []);
+            // problem area. Sound and text not playing nd showing with key events
             useEffect(() => {
                 const drumpad = document.querySelectorAll('.drum-pad')
                 drumpad.forEach(item => {
                     item.addEventListener('keydown', e => {
                         const audio = item.querySelector('audio');
                         if (e.keyCode === 81 || e.keyCode === 87 || e.keyCode === 69 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 68 || e.keyCode === 90 || e.keyCode === 88 || e.keyCode === 67) {
+                            const audio = item.querySelector('audio');
                             setSoundName(audio.getAttribute('data_name'))
                             audio.play();
                         }
@@ -42,10 +67,10 @@
                 })
             }, [])
             return (
-                <main id="drum-machine">
-                    <div id="display">
-                        <h3>{soundName}</h3>
-                        <button className="drum-pad" id="q">Q
+                <main id="drum-machine" className="container-fluid d-flex justify-content-center align-items-center" style={{minHeight: "100vh", height: "fit-content", width: "100vw", boxSizing: "border-box"}}>
+                    <div id="display" className="row d-flex justify-content-center align-items-center" style={{boxSizing: "border-box"}} >
+                        <h3 className="ps-lg-5" >{soundName}</h3>
+                        <button className="drum-pad col-3 bg-success fw-bold rounded" id="q">Q
                             <audio
                                 src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"
                                 className="clip"
@@ -55,7 +80,7 @@
                             
                             </audio>
                         </button>
-                        <button className="drum-pad" id="w">W
+                        <button className="drum-pad col-3 bg-success fw-bold rounded" id="w">W
                             <audio
                                 src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"
                                 className="clip"
@@ -65,7 +90,7 @@
                             
                             </audio>    
                         </button>
-                        <button className="drum-pad" id="e">E
+                        <button className="drum-pad col-3 bg-success fw-bold rounded" id="e">E
                             <audio
                                 src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"
                                 className="clip"
@@ -75,7 +100,7 @@
                             
                             </audio>    
                         </button>
-                        <button className="drum-pad" id="a">A
+                        <button className="drum-pad col-3 bg-success fw-bold rounded" id="a">A
                             <audio
                                 src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"
                                 className="clip"
@@ -85,7 +110,7 @@
                             
                             </audio>    
                         </button>
-                        <button className="drum-pad" id="s">S
+                        <button className="drum-pad col-3 bg-success fw-bold rounded" id="s">S
                             <audio
                                 src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"
                                 className="clip"
@@ -95,7 +120,7 @@
                             
                             </audio>
                         </button>
-                        <button className="drum-pad" id="d">D
+                        <button className="drum-pad col-3 bg-success fw-bold rounded" id="d">D
                             <audio
                                 src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"
                                 className="clip"
@@ -105,7 +130,7 @@
                             
                             </audio>    
                         </button>
-                        <button className="drum-pad" id="z">Z
+                        <button className="drum-pad col-3 bg-success fw-bold rounded" id="z">Z
                             <audio
                                 src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"
                                 className="clip"
@@ -115,7 +140,7 @@
                             
                             </audio>    
                         </button>
-                        <button className="drum-pad" id="x">X
+                        <button className="drum-pad col-3 bg-success fw-bold rounded" id="x">X
                             <audio
                                 src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"
                                 className="clip"
@@ -125,7 +150,7 @@
                             
                             </audio>    
                         </button>
-                        <button className="drum-pad" id="c">C
+                        <button className="drum-pad col-3 bg-success fw-bold rounded" id="c">C
                             <audio
                                 src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
                                 className="clip"
